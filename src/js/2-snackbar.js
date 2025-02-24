@@ -1,5 +1,5 @@
-import iziToast from "izitoast";
-import "izitoast/dist/css/iziToast.min.css";
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 
 const form = document.querySelector('.form');
@@ -37,12 +37,12 @@ form.addEventListener('submit', function (e) {
     .then(delay => {
       iziToast.success({
         title: 'OK',
-        message:`'Fulfilled promise in ${delay}ms`,
+        message:`Fulfilled promise in ${delay}ms`,
         position: 'topRight',
         titleColor:'#fff',
         messageColor: '#fff',
         backgroundColor:'#59a10d',
-        class: 'izi-toast-mes',
+        class: 'izi-toast-sucses',
       });
     })
     .catch(delay => {
@@ -57,3 +57,4 @@ form.addEventListener('submit', function (e) {
       });
     });
 });
+

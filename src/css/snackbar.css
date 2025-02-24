@@ -76,21 +76,3 @@ button {
 button:hover {
     background-color: #6c8cff;
 }
-
-/* .izi-toast-sucses {
-    border-bottom: 2px solid #b5ea7c;
-    border-radius: 4px;
-    padding: 20px;
-    width: 383px;
-    height: 64px;
-    background-color: #59a10d;
-}
-
-.izi-toast-error {
-    border-bottom: 2px solid #ffbebe;
-    border-radius: 4px;
-    padding: 20px;
-    width: 302px;
-    height: 64px;
-    background-color: #ef4040;
-} */
