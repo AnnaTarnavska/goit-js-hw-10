@@ -15,6 +15,8 @@ const timeEl = {
 
 let selectedDate;
 
+startBtn.disabled = true;
+
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -51,18 +53,19 @@ function convertMs(ms) {
   const minutes = Math.floor((ms % day % hour) / minute);
   const seconds = Math.floor((ms % day % hour % minute) / second);
 
-  return { days, hours, minutes, seconds };
-}
-
-function addZero(value) {
-  return value.toString().padStart(2, '0');
+  return {
+    days: days.toString().padStart(2, '0'),
+    hours: hours.toString().padStart(2, '0'),
+    minutes: minutes.toString().padStart(2, '0'),
+    seconds: seconds.toString().padStart(2, '0')
+  };
 }
 
 function updateTimer({ days, hours, minutes, seconds }) {
-  timeEl.daysEl.textContent = addZero(days);
-  timeEl.hoursEl.textContent = addZero(hours);
-  timeEl.minutesEl.textContent = addZero(minutes);
-  timeEl.secondsEl.textContent = addZero(seconds);
+  timeEl.daysEl.textContent = days;
+  timeEl.hoursEl.textContent = hours;
+  timeEl.minutesEl.textContent = minutes;
+  timeEl.secondsEl.textContent = seconds;
 }
 
 let timerInterval;
@@ -76,6 +79,9 @@ startBtn.addEventListener('click', function () {
     return;
   }
 
+  dateInput.disabled = true;
+  startBtn.disabled = true;
+
   timerInterval = setInterval(() => {
     const remainingTime = selectedDate - new Date();
     const time = convertMs(remainingTime);
@@ -84,17 +90,19 @@ startBtn.addEventListener('click', function () {
 
     if (remainingTime <= 0) {
       clearInterval(timerInterval);
+      updateTimer({
+        days: '00',
+        hours: '00',
+        minutes: '00',
+        seconds: '00'
+      });
       iziToast.success({
         title: 'Finished',
         message: 'The countdown is complete!',
       });
       dateInput.disabled = false;
-      startBtn.disabled = true;
     }
   }, 1000);
-
-  dateInput.disabled = true;
-  startBtn.disabled = true;
 });
 
 dateInput.addEventListener('change', function (e) {

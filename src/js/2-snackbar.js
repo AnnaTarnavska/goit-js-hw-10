@@ -1,6 +1,9 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
+import pathSuccessIcon from "../img/sucсess.svg";
+import pathErrorIcon from "../img/error.svg";
+
 
 const form = document.querySelector('.form');
 const delayInput = form.querySelector('input[name="delay"]');
@@ -15,8 +18,14 @@ form.addEventListener('submit', function (e) {
   if (!selectedState) {
     iziToast.error({
       title: 'Error',
-      message: '❌ Please select a state.',
+      message: 'Please select a state.',
       position: 'topRight',
+      titleColor:'#fff',
+      messageColor: '#fff',
+      backgroundColor: '#ef4040',
+      image: pathErrorIcon,
+      imageWidth: 24,
+      imageHeight: 24,
     });
     return; 
   }
@@ -41,8 +50,10 @@ form.addEventListener('submit', function (e) {
         position: 'topRight',
         titleColor:'#fff',
         messageColor: '#fff',
-        backgroundColor:'#59a10d',
-        class: 'izi-toast-sucses',
+        backgroundColor: '#59a10d',
+        image: pathSuccessIcon,
+      imageWidth: 24,
+      imageHeight: 24,
       });
     })
     .catch(delay => {
@@ -52,8 +63,10 @@ form.addEventListener('submit', function (e) {
         position: 'topRight',
         titleColor:'#fff',
         messageColor: '#fff',
-        backgroundColor:'#ef4040',
-        class: 'izi-toast-error',
+        backgroundColor: '#ef4040',
+        image: pathErrorIcon,
+      imageWidth: 24,
+      imageHeight: 24,
       });
     });
 });
